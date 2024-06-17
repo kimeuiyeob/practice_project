@@ -12,4 +12,9 @@ public class IndexController {
         model.addAttribute("message", "Hello, Daeduk!");
         return "index";
     }
+
+    @GetMapping("/")
+    public String index() {
+        return "index"; 
+    }
 }
