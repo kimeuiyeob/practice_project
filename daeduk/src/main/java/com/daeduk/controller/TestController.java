@@ -10,7 +10,7 @@ import com.daeduk.service.TestService;
 
 @Controller
 public class TestController {
-    
+
     @Autowired
     private final TestService testService;
 
@@ -26,4 +26,10 @@ public class TestController {
         model.addAttribute("message", testDto.getCustName());
         return "test";
     }
+
+    @GetMapping("/sidebar")
+    public String sidebar() {
+        return "sidebar";
+    }
+
 }
