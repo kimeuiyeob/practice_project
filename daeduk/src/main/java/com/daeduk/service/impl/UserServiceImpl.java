@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private ModelMapper modelMapper;
 
+    /* 로그인 */
     @Override
     public Boolean confirmLogin(String email, String password) {
 
@@ -42,7 +43,18 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+    /* 비밀번호 찾기 */
+    @Override
+    public UserDto findPassword(String email) {
 
+        Optional<UserEntity> userValue = userRepository.findByEmail(email);
+
+        UserEntity entity = userValue.orElseThrow(() -> new NotFoundException("User not found with email: " + email));
+        UserDto userDto = modelMapper.map(entity, UserDto.class);
+        return userDto;
+    }
+
+    /* 회원가입 */
     @Override
     public Boolean signup(String email, String password) {
 

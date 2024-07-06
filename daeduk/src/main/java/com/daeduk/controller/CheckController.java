@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.daeduk.dto.UserDto;
 import com.daeduk.exception.NotFoundException;
+import com.daeduk.service.MailService;
 import com.daeduk.service.UserService;
 import com.daeduk.service.impl.UserServiceImpl;
 
@@ -20,6 +22,9 @@ public class CheckController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    MailService mailService;
 
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
@@ -64,13 +69,31 @@ public class CheckController {
         Map<String, String> response = new HashMap<>();
 
         String findEmail = email.get("email");
+        UserDto user;
 
-        /*
-         * 해당 이메일로 비밀번호 확인
-         * 비밀번호가 있다면 해당 이메일로 이메일 api 사용 전송
-         * 비밀번호가 없다면 혹은 이메일이 없다면
-         * 이메일 및 비밀번호 없다고 alert
-         */
+        try {
+            user = userService.findPassword(findEmail);
+        } catch (NotFoundException e) {
+            logger.info("NotFoundException: {}", "이메일이 없습니다.");
+            response.put("message", "이메일이 없습니다.");
+            return ResponseEntity.status(401).body(response);
+        } catch (Exception e) {
+            logger.info("Exception : {}", SERVER_ERROR);
+            response.put("message", SERVER_ERROR);
+            return ResponseEntity.status(500).body(response);
+        }
+
+        try {
+            mailService.sendSimpleMessage(user);
+        } catch (Exception e) {
+            
+            System.out.println(e.getStackTrace());
+            System.out.println(e.getMessage());
+
+            logger.info("Exception: {}", "이메일 발송 실패했습니다.");
+            response.put("message", "이메일 발송 실패했습니다.");
+            return ResponseEntity.status(500).body(response);
+        }
 
         response.put("success", "true");
         return ResponseEntity.ok().body(response);
