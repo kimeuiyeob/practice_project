@@ -5,24 +5,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.daeduk.dto.TestDto;
-import com.daeduk.service.TestService;
+import com.daeduk.dto.CustomerDto;
+import com.daeduk.service.CustomerService;
 
 @Controller
 public class TestController {
 
     @Autowired
-    private final TestService testService;
+    private final CustomerService testService;
 
     @Autowired
-    public TestController(TestService testService) {
+    public TestController(CustomerService testService) {
         this.testService = testService;
     }
 
     @GetMapping("/test")
     public String index(Model model) {
 
-        TestDto testDto = testService.getTestValue();
+        CustomerDto testDto = testService.getTestValue();
         model.addAttribute("message", testDto.getCustName());
         return "test";
     }

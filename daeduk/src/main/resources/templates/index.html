@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Daedukchem</title>
+    <title>Daeduk chemical</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
     <!-- Bootstrap icons-->
@@ -19,7 +19,7 @@
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <!-- Custom CSS -->
     <link href="/css/styles.css" rel="stylesheet" />
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <style>
@@ -442,29 +442,55 @@
         </div>
     </footer>
 
+    <!-- Password Find Modal -->
+    <div id="passwordFindModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" style="width: 5px;">&times;</span>
+            <div class="custom-form-content">
+                <header class="custom-header">비밀번호 찾기</header>
+
+                <form id="passwordFindForm" class="custom-form-container">
+                    <div class="custom-field custom-input-field">
+                        <input id="findEmail" type="email" placeholder="이메일" class="custom-input" style="height: 50px;">
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                    <div class="custom-field custom-button-field">
+                        <button type="submit" id="findPasswordButton" style="height: 50px;">비밀번호 찾기</button>
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
     <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" style="width: 5px;">&times;</span>
             <div class="custom-form-content">
                 <header class="custom-header">로그인</header>
-                <form action="#" class="custom-form-container">
+
+                <form id="loginForm" class="custom-form-container">
                     <div class="custom-field custom-input-field">
-                        <input type="email" placeholder="이메일" class="custom-input" style="height: 50px;">
+                        <input id="email" type="email" placeholder="이메일" class="custom-input" style="height: 50px;">
                     </div>
                     <div style="padding-bottom: 10px;"></div>
                     <div class="custom-field custom-input-field">
-                        <input type="password" placeholder="비밀번호" class="custom-password" style="height: 50px;">
-                    </div>
-                    <div class="custom-form-link">
-                        <a href="#" class="custom-forgot-pass">비밀번호를 잊으셨나요?</a>
+                        <input id="password" type="password" placeholder="비밀번호" class="custom-password"
+                            style="height: 50px;">
                     </div>
                     <div style="padding-bottom: 10px;"></div>
                     <div class="custom-field custom-button-field">
-                        <button style="height: 50px;">로그인</button>
+                        <button type="submit" id="loginButton" style="height: 50px;">로그인</button>
                     </div>
                     <div style="padding-bottom: 10px;"></div>
                 </form>
+
+                <div class="custom-form-link">
+                    <a href="#" class="custom-forgot-pass">비밀번호를 잊으셨나요?</a>
+                </div>
+
                 <div class="custom-form-link">
                     <span>계정이 없으신가요? <a href="#" class="custom-link custom-signup-link">회원가입</a></span>
                 </div>
@@ -478,21 +504,24 @@
             <span class="close-modal" style="width: 5px;">&times;</span>
             <div class="custom-form-content">
                 <header class="custom-header">회원가입</header>
-                <form action="#" class="custom-form-container">
+                <form id="signupForm" class="custom-form-container">
                     <div class="custom-field custom-input-field">
-                        <input type="email" placeholder="이메일" class="custom-input" style="height: 50px;">
+                        <input type="email" id="signupEmail" placeholder="이메일" class="custom-input"
+                            style="height: 50px;">
                     </div>
                     <div style="padding-bottom: 10px;"></div>
                     <div class="custom-field custom-input-field">
-                        <input type="password" placeholder="비밀번호 생성" class="custom-password" style="height: 50px;">
+                        <input type="password" id="signupPassword" placeholder="비밀번호 생성" class="custom-password"
+                            style="height: 50px;">
                     </div>
                     <div style="padding-bottom: 10px;"></div>
                     <div class="custom-field custom-input-field">
-                        <input type="password" placeholder="비밀번호 확인" class="custom-password" style="height: 50px;">
+                        <input type="password" id="signupPasswordConfirm" placeholder="비밀번호 확인" class="custom-password"
+                            style="height: 50px;">
                     </div>
                     <div style="padding-bottom: 10px;"></div>
                     <div class="custom-field custom-button-field">
-                        <button style="height: 50px;">회원가입</button>
+                        <button type="submit" style="height: 50px;">회원가입</button>
                     </div>
                     <div style="padding-bottom: 10px;"></div>
                 </form>
@@ -522,6 +551,7 @@
         // 모달 스크립트
         var loginModal = document.getElementById("loginModal");
         var signupModal = document.getElementById("signupModal");
+        var passwordFindModal = document.getElementById("passwordFindModal");
         var loginButton = document.querySelector(".btn.btn-primary");
         var closeModalButtons = document.querySelectorAll(".close-modal");
 
@@ -534,14 +564,16 @@
             button.addEventListener("click", function () {
                 loginModal.style.display = "none";
                 signupModal.style.display = "none";
+                passwordFindModal.style.display = "none";
                 document.body.style.overflow = "auto";
             });
         });
 
         window.addEventListener("click", function (event) {
-            if (event.target === loginModal || event.target === signupModal) {
+            if (event.target === loginModal || event.target === signupModal || event.target === passwordFindModal) {
                 loginModal.style.display = "none";
                 signupModal.style.display = "none";
+                passwordFindModal.style.display = "none";
                 document.body.style.overflow = "auto";
             }
         });
@@ -550,6 +582,7 @@
         signupLink.addEventListener("click", function (event) {
             event.preventDefault();
             loginModal.style.display = "none";
+            passwordFindModal.style.display = "none";
             signupModal.style.display = "block";
         });
 
@@ -557,7 +590,119 @@
         loginLink.addEventListener("click", function (event) {
             event.preventDefault();
             signupModal.style.display = "none";
+            passwordFindModal.style.display = "none";
             loginModal.style.display = "block";
+        });
+
+        const forgotPassLink = document.querySelector(".custom-forgot-pass");
+        forgotPassLink.addEventListener("click", function (event) {
+            event.preventDefault();
+            loginModal.style.display = "none";
+            signupModal.style.display = "none";
+            passwordFindModal.style.display = "block";
+        });
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#loginForm').submit(function (event) {
+                event.preventDefault();
+                const email = $('#email').val();
+                const password = $('#password').val();
+                $.ajax({
+                    url: '/confirm',
+                    type: 'POST',
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        email: email,
+                        password: password
+                    }),
+                    success: function (data) {
+                        if (data.success) {
+                            window.location = "/daeduk";
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert("Error : " + request.responseText);
+                    }
+                });
+            });
+
+            $('#passwordFindForm').submit(function (event) {
+                event.preventDefault();
+                const findEmail = $('#findEmail').val();
+                $.ajax({
+                    url: '/findEmail',
+                    type: 'POST',
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        email: findEmail
+                    }),
+                    success: function (data) {
+                        if (data.success) {
+                            alert("이메일로 초기화된 비밀번호를 보내드렸습니다.");
+                            passwordFindModal.style.display = "none";
+                            document.body.style.overflow = "auto";
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert("Error: " + request.responseText);
+                    }
+                });
+            });
+
+            $('#signupForm').submit(function (event) {
+
+                event.preventDefault();
+
+                const email = $('#signupEmail').val().trim();
+                const password = $('#signupPassword').val().trim();
+                const passwordConfirm = $('#signupPasswordConfirm').val().trim();
+
+                if (!email || !password || !passwordConfirm) {
+                    alert("모든 필드를 입력해주세요.");
+                    return;
+                }
+
+                if (password !== passwordConfirm) {
+                    alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
+                    return;
+                }
+                if (password.length < 6 || password.length > 16) {
+                    alert("비밀번호는 6자리 이상 16자리 이하이어야 합니다.");
+                    return;
+                }
+
+                $.ajax({
+                    url: '/signup',
+                    type: 'POST',
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify({
+                        email: email,
+                        password: password
+                    }),
+                    success: function (data) {
+                        if (data.success) {
+                            alert("회원가입이 완료되었습니다.");
+                            signupModal.style.display = "none";
+                            loginModal.style.display = "none";
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        alert("Error: " + request.responseText);
+                    }
+                });
+            });
         });
     </script>
 </body>
