@@ -17,4 +17,9 @@ public class IndexController {
     public String index() {
         return "index"; 
     }
+
+    @GetMapping("/companyIntroduce")
+    public String companyIntroduce() {
+        return "companyIntroduce"; 
+    }
 }
