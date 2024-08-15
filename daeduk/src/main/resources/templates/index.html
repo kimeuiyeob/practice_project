@@ -462,8 +462,8 @@
 
                 <!-- Pendding -->
                 <div id="loadingIndicator" style="display: none; text-align: center;">
-                    <img src="image/Loading.jpg" alt="Loading..." style="width: 50px; height: 50px;">
-                    <p>처리 중입니다. 잠시만 기다려주세요...</p>
+                    <img src="image/Loading.gif" alt="Loading..." style="width: 50px; height: 50px;">
+                    <p style="padding-top:5px;">처리 중입니다. 잠시만 기다려주세요...</p>
                 </div>
 
             </div>
@@ -643,6 +643,7 @@
                 const findEmail = $('#findEmail').val();
 
                 $('#loadingIndicator').show();
+                $('.custom-button-field').hide();
 
                 $.ajax({
                     url: '/findEmail',
@@ -662,10 +663,12 @@
                             document.body.style.overflow = "auto";
                         } else {
                             alert(data.message);
+                            $('.custom-button-field').show();
                         }
                     },
                     error: function (request, status, error) {
                         $('#loadingIndicator').hide();
+                        $('.custom-button-field').show();
                         alert("Error: " + request.responseText);
                     }
                 });

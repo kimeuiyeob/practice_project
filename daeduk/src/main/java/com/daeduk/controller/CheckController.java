@@ -74,8 +74,8 @@ public class CheckController {
         try {
             user = userService.findPassword(findEmail);
         } catch (NotFoundException e) {
-            logger.info("NotFoundException: {}", "이메일이 없습니다.");
-            response.put("message", "이메일이 없습니다.");
+            logger.info("NotFoundException: {}", "해당 이메일로 가입된 이력이 없습니다.");
+            response.put("message", "해당 이메일로 가입된 이력이 없습니다.");
             return ResponseEntity.status(401).body(response);
         } catch (Exception e) {
             logger.info("Exception : {}", SERVER_ERROR);
