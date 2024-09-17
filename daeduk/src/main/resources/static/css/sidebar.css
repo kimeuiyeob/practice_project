@@ -1,0 +1,40 @@
+/* 사이드바 CSS */
+.content {
+    margin-right: 300px;
+    padding: 20px;
+}
+
+.sidebar {
+    position: absolute;
+    top: 25%;
+    right: 20px;
+    z-index: 5;
+    width: 250px;
+    background-color: #f4f4f4;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+    color: #444;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    font-size: 24px;
+}
+
+.sidebar p {
+    margin: 10px 0;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.sidebar a {
+    color: #0066cc;
+    text-decoration: none;
+}
+
+.sidebar a:hover {
+    text-decoration: underline;
+}

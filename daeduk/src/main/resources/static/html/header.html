@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+    <!-- Navigation-->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a class="navbar-brand" href="/" style="padding-right:30%">(주) DK</a>
+            <div>
+                <a class="navbar1" href="/companyIntroduce">회사소개</a>
+                <a class="navbar1" href="/test">제품안내</a>
+                <a class="navbar1" href="#!">제조설비</a>
+                <a class="navbar1" href="#!">오시는길</a>
+                <a class="navbar1" href="#!">공지사항</a>
+            </div>
+            <a class="btn btn-primary" href="#!">로그인</a>
+        </div>
+    </nav>
+
+    <!-- Password Find Modal -->
+    <div id="passwordFindModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" style="width: 5px;">&times;</span>
+            <div class="custom-form-content">
+                <header class="custom-header">비밀번호 찾기</header>
+
+                <form id="passwordFindForm" class="custom-form-container">
+                    <div class="custom-field custom-input-field">
+                        <input id="findEmail" type="email" placeholder="이메일" class="custom-input" style="height: 50px;">
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                    <div class="custom-field custom-button-field">
+                        <button type="submit" id="findPasswordButton" style="height: 50px;">비밀번호 찾기</button>
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                </form>
+
+                <!-- Pendding -->
+                <div id="loadingIndicator" style="display: none; text-align: center;">
+                    <img src="image/loading.gif" alt="Loading..." style="width: 50px; height: 50px;">
+                    <p style="padding-top:5px;">처리 중입니다. 잠시만 기다려주세요...</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" style="width: 5px;">&times;</span>
+            <div class="custom-form-content">
+                <header class="custom-header">로그인</header>
+
+                <form id="loginForm" class="custom-form-container">
+                    <div class="custom-field custom-input-field">
+                        <input id="email" type="email" placeholder="이메일" class="custom-input" style="height: 50px;">
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                    <div class="custom-field custom-input-field">
+                        <input id="password" type="password" placeholder="비밀번호" class="custom-password"
+                            style="height: 50px;">
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                    <div class="custom-field custom-button-field">
+                        <button type="submit" id="loginButton" style="height: 50px;">로그인</button>
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                </form>
+
+                <div class="custom-form-link">
+                    <a href="#" class="custom-forgot-pass">비밀번호를 잊으셨나요?</a>
+                </div>
+
+                <div class="custom-form-link">
+                    <span>계정이 없으신가요? <a href="#" class="custom-link custom-signup-link">회원가입</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" style="width: 5px;">&times;</span>
+            <div class="custom-form-content">
+                <header class="custom-header">회원가입</header>
+                <form id="signupForm" class="custom-form-container">
+                    <div class="custom-field custom-input-field">
+                        <input type="email" id="signupEmail" placeholder="이메일" class="custom-input"
+                            style="height: 50px;">
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                    <div class="custom-field custom-input-field">
+                        <input type="password" id="signupPassword" placeholder="비밀번호 생성" class="custom-password"
+                            style="height: 50px;">
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                    <div class="custom-field custom-input-field">
+                        <input type="password" id="signupPasswordConfirm" placeholder="비밀번호 확인" class="custom-password"
+                            style="height: 50px;">
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                    <div class="custom-field custom-button-field">
+                        <button type="submit" style="height: 50px;">회원가입</button>
+                    </div>
+                    <div style="padding-bottom: 10px;"></div>
+                </form>
+                <div class="custom-form-link">
+                    <span>이미 계정이 있으신가요? <a href="#" class="custom-link custom-login-link">로그인</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- login JS -->
+    <script src="/js/login.js"></script>
+    
+</body>
+
+</html>

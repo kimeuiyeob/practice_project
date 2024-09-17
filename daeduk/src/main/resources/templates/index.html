@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8" />
@@ -7,8 +7,7 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>Daeduk chemical</title>
-    <!-- Favicon-->
-    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+
     <!-- Bootstrap icons-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
         type="text/css" />
@@ -17,326 +16,26 @@
         type="text/css" />
     <!-- Boxicons CSS -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- =================================================================================================== -->
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/logo.png" />
     <!-- Custom CSS -->
     <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/login.css" rel="stylesheet" />
+    <link href="/css/sidebar.css" rel="stylesheet" />
+    <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- =================================================================================================== -->
+
 </head>
 
-<style>
-    /* ================================================================ */
-    /* 네비게이션 CSS */
-    .navbar1 {
-        padding-right: 30px;
-        text-decoration: none;
-        color: black;
-    }
-
-    /* 사이드바 CSS */
-    .content {
-        margin-right: 300px;
-        padding: 20px;
-    }
-
-    .sidebar {
-        position: absolute;
-        top: 25%;
-        right: 20px;
-        z-index: 5;
-        width: 250px;
-        background-color: #f4f4f4;
-        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    .sidebar h2 {
-        margin-top: 0;
-        color: #444;
-        border-bottom: 2px solid #ddd;
-        padding-bottom: 10px;
-        font-size: 24px;
-    }
-
-    .sidebar p {
-        margin: 10px 0;
-        font-size: 16px;
-        line-height: 1.5;
-    }
-
-    .sidebar a {
-        color: #0066cc;
-        text-decoration: none;
-    }
-
-    .sidebar a:hover {
-        text-decoration: underline;
-    }
-
-    /* ================================================================ */
-    /* 로그인 회원가입 CSS */
-
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Poppins', sans-serif;
-    }
-
-    .custom-container {
-        height: 100vh;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        column-gap: 30px;
-    }
-
-    .custom-form {
-        position: relative;
-        max-width: 430px;
-        width: 100%;
-        padding: 30px;
-        border-radius: 6px;
-        background: #FFF;
-    }
-
-    .custom-form.signup {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .custom-forms.show-signup .custom-form.signup {
-        opacity: 1;
-        pointer-events: auto;
-    }
-
-    .custom-forms.show-signup .custom-form.login {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    .custom-header {
-        font-size: 28px;
-        font-weight: 600;
-        color: #232836;
-        text-align: center;
-    }
-
-    .custom-form-container {
-        margin-top: 30px;
-    }
-
-    .custom-form .custom-field {
-        position: relative;
-        height: 50px;
-        width: 100%;
-        margin-top: 20px;
-        border-radius: 6px;
-    }
-
-    .custom-field input,
-    .custom-field button {
-        height: 100%;
-        width: 100%;
-        border: none;
-        font-size: 16px;
-        font-weight: 400;
-        border-radius: 6px;
-    }
-
-    .custom-field input {
-        outline: none;
-        padding: 0 15px;
-        border: 1px solid#CACACA;
-    }
-
-    .custom-field input:focus {
-        border-bottom-width: 2px;
-    }
-
-    .custom-eye-icon {
-        position: absolute;
-        top: 50%;
-        right: 10px;
-        transform: translateY(-50%);
-        font-size: 18px;
-        color: #8b8b8b;
-        cursor: pointer;
-        padding: 5px;
-    }
-
-    .custom-field button {
-        color: #fff;
-        background-color: #0171d3;
-        transition: all 0.3s ease;
-        cursor: pointer;
-    }
-
-    .custom-field button:hover {
-        background-color: #016dcb;
-    }
-
-    .custom-form-link {
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    .custom-form-link span,
-    .custom-form-link a {
-        font-size: 14px;
-        font-weight: 400;
-        color: #232836;
-    }
-
-    .custom-form a {
-        color: #0171d3;
-        text-decoration: none;
-    }
-
-    .custom-form-content a:hover {
-        text-decoration: underline;
-    }
-
-    .custom-line {
-        position: relative;
-        height: 1px;
-        width: 100%;
-        margin: 36px 0;
-        background-color: #d4d4d4;
-    }
-
-    .custom-line::before {
-        content: 'Or';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #FFF;
-        color: #8b8b8b;
-        padding: 0 15px;
-    }
-
-    .custom-media-options a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .custom-facebook {
-        color: #fff;
-        background-color: #4267b2;
-    }
-
-    .custom-facebook .custom-facebook-icon {
-        height: 28px;
-        width: 28px;
-        color: #0171d3;
-        font-size: 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #fff;
-    }
-
-    .custom-facebook-icon,
-    .custom-google-img {
-        position: absolute;
-        top: 50%;
-        left: 15px;
-        transform: translateY(-50%);
-    }
-
-    .custom-google-img {
-        height: 20px;
-        width: 20px;
-        object-fit: cover;
-    }
-
-    .custom-google {
-        border: 1px solid #CACACA;
-    }
-
-    .custom-google span {
-        font-weight: 500;
-        opacity: 0.6;
-        color: #232836;
-    }
-
-    @media screen and (max-width: 400px) {
-        .custom-form {
-            padding: 20px 10px;
-        }
-    }
-
-    .modal {
-        display: none;
-        position: fixed;
-        z-index: 1;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        overflow: auto;
-        background-color: rgba(0, 0, 0, 0.5);
-        justify-content: center;
-        align-items: center;
-    }
-
-    .modal-content {
-        background-color: #fefefe;
-        margin: 15% auto;
-        padding: 20px;
-        border: 1px solid #888;
-        width: 80%;
-        max-width: 500px;
-        position: relative;
-        border-radius: 10px;
-    }
-
-    .close-modal {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-    }
-
-    .close-modal:hover,
-    .close-modal:focus {
-        color: black;
-        text-decoration: none;
-        cursor: pointer;
-    }
-
-    /* ================================================================ */
-</style>
-
-
 <body>
-    <!-- Navigation-->
-    <nav class="navbar navbar-light bg-light static-top">
-        <div class="container">
-            <a class="navbar-brand" href="/" style="padding-right:30%">(주) DK</a>
-            <div>
-                <a class="navbar1" href="/companyIntroduce">회사소개</a>
-                <a class="navbar1" href="/test">제품안내</a>
-                <a class="navbar1" href="#!">제조설비</a>
-                <a class="navbar1" href="#!">오시는길</a>
-            </div>
-            <a class="btn btn-primary" href="#!">로그인</a>
-        </div>
-    </nav>
 
+    <!-- header.html -->
+    <div id='header'></div>
     <!-- Sidebar -->
-    <div class="sidebar" id="sidebar">
-        <h2 style="text-align: center;">회사안내</h2>
-        <p><strong>TEL:</strong> 031) 358-6267</p>
-        <p><strong>FAX:</strong> 031) 358-2267</p>
-        <p><strong>Email:</strong> <a href="mailto:daedukchem@daum.net">daedukchem@daum.net</a></p>
-        <p><strong>Website:</strong> <a href="http://www.daedukchem.co.kr" target="_blank">www.daedukchem.co.kr</a></p>
-    </div>
+    <div id='side'></div>
 
     <!-- Masthead-->
     <header class="masthead">
@@ -378,22 +77,43 @@
     </header>
 
     <!-- Icons Grid-->
-    <section class="features-icons bg-light text-center">
-        <div class="container" style="display: flex; justify-content: space-between;">
-            <div class="col-lg-4">
-                <img src="image/certs.jpg" style="width:70%">
-                <h3>Fully Responsive</h3>
-            </div>
-            <div class="col-lg-4">
-                <img src="image/certs.jpg" style="width:70%">
-                <h3>Fully Responsive</h3>
-            </div>
-            <div class="col-lg-4">
-                <img src="image/certs.jpg" style="width:70%">
-                <h3>Fully Responsive</h3>
-            </div>
+    <div class="comment bg-light" style="display: flex; justify-content: space-between; align-items: center;">
+        <div class="text-content">
+            <p>CLEAN 사업장</p>
+            <p>도져 용 이중 SEAL 특허</p>
+            <p>ISO9001/2015 인증</p>
+            <p>현대제철 SQ 인증</p>
+            <p>링크 SEAL(W형) 특허등록(2건)</p>
+            <p>링크 SEAL(W형) 디자인등록(21건)</p>
+            <p>해외 디자인 및 특허 등록</p>
         </div>
-    </section>
+
+        <section class="features-icons bg-light text-center">
+            <div class="container" style="display: flex; justify-content: space-between;">
+                <div class="col-lg-4">
+                    <img src="image/certs.jpg" style="width:70%">
+                </div>
+                <div class="col-lg-4">
+                    <img src="image/certs.jpg" style="width:70%">
+                </div>
+                <div class="col-lg-4">
+                    <img src="image/certs.jpg" style="width:70%">
+                </div>
+            </div>
+            <div style="padding-bottom:20px"></div>
+            <div class="container" style="display: flex; justify-content: space-between;">
+                <div class="col-lg-4">
+                    <img src="image/certs.jpg" style="width:70%">
+                </div>
+                <div class="col-lg-4">
+                    <img src="image/certs.jpg" style="width:70%">
+                </div>
+                <div class="col-lg-4">
+                    <img src="image/certs.jpg" style="width:70%">
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Image Showcases-->
     <section class="showcase">
@@ -403,7 +123,8 @@
                 </div>
                 <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                     <h2>Fully Responsive Design</h2>
-                    <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will
+                    <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme
+                        will
                         look great on any device, whether it's a phone, tablet, or desktop the page will behave
                         responsively!</p>
                 </div>
@@ -412,7 +133,8 @@
                 <div class="col-lg-6 text-white showcase-img"><img src="image/poly2.png" style="width:100%"></div>
                 <div class="col-lg-6 my-auto showcase-text">
                     <h2>Updated For Bootstrap 5</h2>
-                    <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 5 is leading the
+                    <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 5 is leading
+                        the
                         way in mobile responsive web development! All of the themes on Start Bootstrap are now using
                         Bootstrap 5!</p>
                 </div>
@@ -422,7 +144,8 @@
                 </div>
                 <div class="col-lg-6 order-lg-1 my-auto showcase-text">
                     <h2>Fully Responsive Design</h2>
-                    <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme will
+                    <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme
+                        will
                         look great on any device, whether it's a phone, tablet, or desktop the page will behave
                         responsively!</p>
                 </div>
@@ -430,298 +153,21 @@
         </div>
     </section>
 
-    <!-- Footer-->
-    <footer class="footer bg-light" style="text-align: center;">
-        <div class="container">
-            <p>대덕화학(주) / 대표이사 : 이기광</p>
-            <p>이메일: <a href="mailto:daedukchem@daum.net">daedukchem@daum.net</a> / TEL: 031-358-6267 / FAX: 031-358-2267
-            </p>
-            <p>화성공장: 경기도 화성시 장안면 장안로 280번길 26-11</p>
-            <p>인천공장: 인천시 남동구 논현동 453-10</p>
-            <p>Copyright (C) 2013 BY DAEDUK CHEMICAL CO.,LTD</p>
-        </div>
-    </footer>
-
-    <!-- Password Find Modal -->
-    <div id="passwordFindModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" style="width: 5px;">&times;</span>
-            <div class="custom-form-content">
-                <header class="custom-header">비밀번호 찾기</header>
-
-                <form id="passwordFindForm" class="custom-form-container">
-                    <div class="custom-field custom-input-field">
-                        <input id="findEmail" type="email" placeholder="이메일" class="custom-input" style="height: 50px;">
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                    <div class="custom-field custom-button-field">
-                        <button type="submit" id="findPasswordButton" style="height: 50px;">비밀번호 찾기</button>
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                </form>
-
-                <!-- Pendding -->
-                <div id="loadingIndicator" style="display: none; text-align: center;">
-                    <img src="image/loading.gif" alt="Loading..." style="width: 50px; height: 50px;">
-                    <p style="padding-top:5px;">처리 중입니다. 잠시만 기다려주세요...</p>
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" style="width: 5px;">&times;</span>
-            <div class="custom-form-content">
-                <header class="custom-header">로그인</header>
-
-                <form id="loginForm" class="custom-form-container">
-                    <div class="custom-field custom-input-field">
-                        <input id="email" type="email" placeholder="이메일" class="custom-input" style="height: 50px;">
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                    <div class="custom-field custom-input-field">
-                        <input id="password" type="password" placeholder="비밀번호" class="custom-password"
-                            style="height: 50px;">
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                    <div class="custom-field custom-button-field">
-                        <button type="submit" id="loginButton" style="height: 50px;">로그인</button>
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                </form>
-
-                <div class="custom-form-link">
-                    <a href="#" class="custom-forgot-pass">비밀번호를 잊으셨나요?</a>
-                </div>
-
-                <div class="custom-form-link">
-                    <span>계정이 없으신가요? <a href="#" class="custom-link custom-signup-link">회원가입</a></span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" style="width: 5px;">&times;</span>
-            <div class="custom-form-content">
-                <header class="custom-header">회원가입</header>
-                <form id="signupForm" class="custom-form-container">
-                    <div class="custom-field custom-input-field">
-                        <input type="email" id="signupEmail" placeholder="이메일" class="custom-input"
-                            style="height: 50px;">
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                    <div class="custom-field custom-input-field">
-                        <input type="password" id="signupPassword" placeholder="비밀번호 생성" class="custom-password"
-                            style="height: 50px;">
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                    <div class="custom-field custom-input-field">
-                        <input type="password" id="signupPasswordConfirm" placeholder="비밀번호 확인" class="custom-password"
-                            style="height: 50px;">
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                    <div class="custom-field custom-button-field">
-                        <button type="submit" style="height: 50px;">회원가입</button>
-                    </div>
-                    <div style="padding-bottom: 10px;"></div>
-                </form>
-                <div class="custom-form-link">
-                    <span>이미 계정이 있으신가요? <a href="#" class="custom-link custom-login-link">로그인</a></span>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- footer.html -->
+    <div id='footer'></div>
 
     <!-- Bootstrap core JS-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core theme JS-->
-    <script src="js/scripts.js"></script>
     <!-- SB Forms JS-->
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
-    <!-- Sidebar javascript -->
-    <script>
-        window.addEventListener('scroll', function () {
-            var sidebar = document.getElementById('sidebar');
-            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            var viewportHeight = window.innerHeight;
-            sidebar.style.top = (scrollTop + viewportHeight * 0.25) + 'px';
-        });
-
-        // 모달 스크립트
-        var loginModal = document.getElementById("loginModal");
-        var signupModal = document.getElementById("signupModal");
-        var passwordFindModal = document.getElementById("passwordFindModal");
-        var loginButton = document.querySelector(".btn.btn-primary");
-        var closeModalButtons = document.querySelectorAll(".close-modal");
-
-        loginButton.addEventListener("click", function () {
-            loginModal.style.display = "block";
-            document.body.style.overflow = "hidden";
-        });
-
-        closeModalButtons.forEach(function (button) {
-            button.addEventListener("click", function () {
-                loginModal.style.display = "none";
-                signupModal.style.display = "none";
-                passwordFindModal.style.display = "none";
-                document.body.style.overflow = "auto";
-            });
-        });
-
-        window.addEventListener("click", function (event) {
-            if (event.target === loginModal || event.target === signupModal || event.target === passwordFindModal) {
-                loginModal.style.display = "none";
-                signupModal.style.display = "none";
-                passwordFindModal.style.display = "none";
-                document.body.style.overflow = "auto";
-            }
-        });
-
-        const signupLink = document.querySelector(".custom-signup-link");
-        signupLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            loginModal.style.display = "none";
-            passwordFindModal.style.display = "none";
-            signupModal.style.display = "block";
-        });
-
-        const loginLink = document.querySelector(".custom-login-link");
-        loginLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            signupModal.style.display = "none";
-            passwordFindModal.style.display = "none";
-            loginModal.style.display = "block";
-        });
-
-        const forgotPassLink = document.querySelector(".custom-forgot-pass");
-        forgotPassLink.addEventListener("click", function (event) {
-            event.preventDefault();
-            loginModal.style.display = "none";
-            signupModal.style.display = "none";
-            passwordFindModal.style.display = "block";
-        });
-    </script>
-
-
-    <script>
-        $(document).ready(function () {
-            $('#loginForm').submit(function (event) {
-                event.preventDefault();
-                const email = $('#email').val();
-                const password = $('#password').val();
-                $.ajax({
-                    url: '/confirm',
-                    type: 'POST',
-                    dataType: "json",
-                    contentType: "application/json",
-                    data: JSON.stringify({
-                        email: email,
-                        password: password
-                    }),
-                    success: function (data) {
-                        if (data.success) {
-                            window.location = "/daeduk";
-                        } else {
-                            alert(data.message);
-                        }
-                    },
-                    error: function (request, status, error) {
-                        alert("Error : " + request.responseText);
-                    }
-                });
-            });
-
-            $('#passwordFindForm').submit(function (event) {
-                event.preventDefault();
-                const findEmail = $('#findEmail').val();
-
-                $('#loadingIndicator').show();
-                $('.custom-button-field').hide();
-
-                $.ajax({
-                    url: '/findEmail',
-                    type: 'POST',
-                    dataType: "json",
-                    contentType: "application/json",
-                    data: JSON.stringify({
-                        email: findEmail
-                    }),
-                    success: function (data) {
-
-                        $('#loadingIndicator').hide();
-
-                        if (data.success) {
-                            alert("이메일로 비밀번호를 보내드렸습니다.");
-                            passwordFindModal.style.display = "none";
-                            document.body.style.overflow = "auto";
-                            $('.custom-button-field').show();
-                        } else {
-                            alert(data.message);
-                            $('.custom-button-field').show();
-                        }
-                    },
-                    error: function (request, status, error) {
-                        $('#loadingIndicator').hide();
-                        $('.custom-button-field').show();
-                        alert("Error: " + request.responseText);
-                    }
-                });
-            });
-
-            $('#signupForm').submit(function (event) {
-
-                event.preventDefault();
-
-                const email = $('#signupEmail').val().trim();
-                const password = $('#signupPassword').val().trim();
-                const passwordConfirm = $('#signupPasswordConfirm').val().trim();
-
-                if (!email || !password || !passwordConfirm) {
-                    alert("모든 필드를 입력해주세요.");
-                    return;
-                }
-
-                if (password !== passwordConfirm) {
-                    alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
-                    return;
-                }
-                if (password.length < 6 || password.length > 16) {
-                    alert("비밀번호는 6자리 이상 16자리 이하이어야 합니다.");
-                    return;
-                }
-
-                $.ajax({
-                    url: '/signup',
-                    type: 'POST',
-                    dataType: "json",
-                    contentType: "application/json",
-                    data: JSON.stringify({
-                        email: email,
-                        password: password
-                    }),
-                    success: function (data) {
-                        if (data.success) {
-                            alert("회원가입이 완료되었습니다.");
-                            signupModal.style.display = "none";
-                            loginModal.style.display = "none";
-                        } else {
-                            alert(data.message);
-                        }
-                    },
-                    error: function (request, status, error) {
-                        alert("Error: " + request.responseText);
-                    }
-                });
-            });
-        });
-    </script>
+    <!-- =================================================================================================== -->
+    <!-- Sidebar JS -->
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/sidebarScroll.js"></script>
+    <!-- Header JS -->
+    <script src="/js/headerFooter.js"></script>
+    <!-- =================================================================================================== -->
 </body>
 
 </html>
