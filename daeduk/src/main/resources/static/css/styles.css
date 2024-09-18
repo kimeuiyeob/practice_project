@@ -12717,3 +12717,20 @@ footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
+
+.text-content {
+  padding-left: 90px;
+}
+
+.text-content p {
+  font-size: 1.3em;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+}
+
+.comment {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+}
