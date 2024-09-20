@@ -24,6 +24,7 @@
     <link href="/css/styles.css" rel="stylesheet" />
     <link href="/css/login.css" rel="stylesheet" />
     <link href="/css/sidebar.css" rel="stylesheet" />
+    <link href="/css/slidebanner.css" rel="stylesheet" />
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- =================================================================================================== -->
@@ -33,21 +34,19 @@
 <body>
 
     <!-- header.html -->
-    <div id='header' class="bg-light"></div>
+    <div id='header'></div>
     <!-- Sidebar -->
     <div id='side'></div>
 
     <!-- ==========================================  검색창 ====================================================== -->
     <header class="masthead">
-        <div class="container position-relative">
+        <!--  <div class="container position-relative">
             <div class="row justify-content-center">
                 <div class="col-xl-6">
                     <div class="text-center text-white">
-                        <!-- Page heading-->
                         <h1 class="mb-5">대덕화학은 경험과 기술로 최고의 제품과 고객 만족을 추구합니다.</h1>
 
                         <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <!-- Email address input-->
                             <div class="row">
                                 <div class="col">
                                     <input class="form-control form-control-lg" id="emailAddress" type="email"
@@ -65,7 +64,6 @@
                                         href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
                                 </div>
                             </div>
-                            <!-- Submit error message-->
                             <div class="d-none" id="submitErrorMessage">
                                 <div class="text-center text-danger mb-3">Error sending message!</div>
                             </div>
@@ -73,11 +71,28 @@
                     </div>
                 </div>
             </div>
+        </div> -->
+
+        <div class="contain">
+            <div class="text-section text-white" style="position: relative !important">
+                <h1 class="mb-5">대덕화학은 경험과 기술로 최고의 제품과 고객 만족을 추구합니다.</h1>
+            </div>
+            <div class="slider-section">
+                <div class="slider">
+                    <div class="slides">
+                        <img class="slide" src="image/thing1.png" alt="Image 1" />
+                        <img class="slide" src="image/thing2.png" alt="Image 2" />
+                        <img class="slide" src="image/thing3.png" alt="Image 3" />
+                        <img class="slide" src="image/thing4.png" alt="Image 4" />
+                    </div>
+                </div>
+            </div>
         </div>
+
     </header>
 
     <!-- ==========================================  인증서 ====================================================== -->
-    <div class="comment bg-light" style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
         <div class="text-content">
             <p>CLEAN 사업장</p>
             <p>도져 용 이중 SEAL 특허</p>
@@ -88,7 +103,7 @@
             <p>해외 디자인 및 특허 등록</p>
         </div>
 
-        <section class="features-icons bg-light text-center">
+        <section class="features-icons text-center">
             <div class="container" style="display: flex; justify-content: space-between;">
                 <div class="col-lg-4">
                     <img src="image/certs.jpg" style="width:70%">
@@ -153,9 +168,9 @@
         </div>
     </section> -->
 
-    <div style="padding-top:100px; padding-bottom: 100px; text-align: center;">
+    <!--  <div style="padding-top:100px; padding-bottom: 100px; text-align: center;">
         <img src=" image/picture1.png" style="width:90%">
-    </div>
+    </div> -->
 
     <!-- footer.html -->
     <div id='footer'></div>
@@ -172,6 +187,8 @@
     <!-- Header JS -->
     <script src="/js/headerFooter.js"></script>
     <!-- =================================================================================================== -->
+    <!-- Slidebanner JS -->
+    <script src="/js/slidebanner.js"></script>
 </body>
 
 </html>
