@@ -12734,3 +12734,19 @@ footer.footer {
   padding: 20px;
   border-radius: 10px;
 }
+
+/* 이미지에 마우스를 올렸을 때 확대 효과 적용 */
+.container img {
+  transition: transform 0.3s ease-in-out;
+  /* 부드러운 확대 전환 효과 */
+}
+
+/* 마우스를 올렸을 때 이미지 확대 */
+.container img:hover {
+  transform: scale(1.1);
+  /* 이미지 크기를 1.1배로 확대 */
+}
+
+.content-padding-bottom {
+  padding-bottom: 100px;
+}
