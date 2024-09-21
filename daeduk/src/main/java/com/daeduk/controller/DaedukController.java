@@ -5,11 +5,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
-public class DaedukController {
-    
+public class DaedukController extends SessionController {
+
     @GetMapping("/daeduk")
     public String index(Model model) {
-        model.addAttribute("message", "Hello, Daeduk!");
+
+        String userEmail = (String) model.getAttribute("userEmail");
+        if (userEmail == null) {
+            return "redirect:/";
+        }
+        model.addAttribute("message", "Hello, " + userEmail + "!");
         return "daeduk";
     }
 }

@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +17,8 @@ import com.daeduk.exception.NotFoundException;
 import com.daeduk.service.MailService;
 import com.daeduk.service.UserService;
 import com.daeduk.service.impl.UserServiceImpl;
+
+import jakarta.servlet.http.HttpSession;
 
 @RestController
 public class CheckController {
@@ -35,7 +38,8 @@ public class CheckController {
 
     /* 로그인 요청 */
     @PostMapping("/confirm")
-    public ResponseEntity<Map<String, String>> confirmLogin(@RequestBody Map<String, String> loginData) {
+    public ResponseEntity<Map<String, String>> confirmLogin(@RequestBody Map<String, String> loginData,
+            HttpSession session) {
 
         String email = loginData.get("email");
         String password = loginData.get("password");
@@ -46,6 +50,8 @@ public class CheckController {
             if (loginResult) {
                 response.put("message", SUCCESS);
                 response.put("success", "true");
+                /* 로그인 성공시 세션 저장 */
+                session.setAttribute("email", email);
                 return ResponseEntity.ok().body(response);
             } else {
                 response.put("message", PASSWORD_FAIL);
@@ -86,7 +92,7 @@ public class CheckController {
         try {
             mailService.sendSimpleMessage(user);
         } catch (Exception e) {
-            
+
             System.out.println(e.getStackTrace());
             System.out.println(e.getMessage());
 
@@ -104,14 +110,11 @@ public class CheckController {
     public ResponseEntity<Map<String, String>> signup(@RequestBody Map<String, String> signupData) {
 
         /* 비밀번호에 <> 있으면 &lt; &gt; 바꿔서 넣고 이메일로 비밀번호 알려줄때는 다시 원래대로 해서 보내주기 */
-
         String email = signupData.get("email");
         String password = signupData.get("password");
-
         Boolean signupResult = userService.signup(email, password);
 
         Map<String, String> response = new HashMap<>();
-
         if (signupResult) {
             response.put("success", "true");
             return ResponseEntity.ok().body(response);
@@ -119,7 +122,6 @@ public class CheckController {
             response.put("success", "false");
             return ResponseEntity.status(401).body(response);
         }
-
     }
 
 }

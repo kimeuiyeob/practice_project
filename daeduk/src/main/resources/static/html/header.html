@@ -1,7 +1,15 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
+<head>
+    <meta charset="utf-8" />
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- =================================================================================================== -->
+</head>
+
 <body>
+    <!-- =================================================================================================== -->
     <!-- Navigation-->
     <nav class="navbar navbar-light bg-light static-top" style=" box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     position: fixed; width: 100%; z-index: 100; top: 0;">
@@ -16,10 +24,11 @@
                 <a class="navbar1" href="#!">오시는길</a>
                 <a class="navbar1" href="/test">공지사항</a>
             </div>
-            <a class="btn btn-primary" href="#!">로그인</a>
+            <a id="loginBtn" class="btn btn-primary" href="#!">로그인</a>
         </div>
     </nav>
 
+    <!-- =================================================================================================== -->
     <!-- Password Find Modal -->
     <div id="passwordFindModal" class="modal">
         <div class="modal-content">
@@ -48,6 +57,7 @@
         </div>
     </div>
 
+    <!-- =================================================================================================== -->
     <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
@@ -82,6 +92,7 @@
         </div>
     </div>
 
+    <!-- =================================================================================================== -->
     <!-- Signup Modal -->
     <div id="signupModal" class="modal">
         <div class="modal-content">
@@ -116,6 +127,7 @@
         </div>
     </div>
 
+    <!-- =================================================================================================== -->
     <!-- login JS -->
     <script src="/js/login.js"></script>
 

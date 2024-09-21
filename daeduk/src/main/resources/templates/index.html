@@ -25,6 +25,7 @@
     <link href="/css/login.css" rel="stylesheet" />
     <link href="/css/sidebar.css" rel="stylesheet" />
     <link href="/css/slidebanner.css" rel="stylesheet" />
+    <!-- css here -->
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- =================================================================================================== -->
@@ -190,6 +191,11 @@
     <!-- =================================================================================================== -->
     <!-- Slidebanner JS -->
     <script src="/js/slidebanner.js"></script>
+
+    <!-- 세션값 담기 -->
+  <input type="hidden" id="loginCheck" th:value="${loginCheck}" />
+  <script src="/js/sessionCheck.js"></script>
+
 </body>
 
 </html>

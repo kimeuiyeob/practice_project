@@ -61,7 +61,7 @@
 }
 
 /* 양옆의 버튼 */
-button {
+/* button {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
@@ -84,4 +84,4 @@ button.next {
 
 button:hover {
     background-color: rgba(0, 0, 0, 0.8);
-}
+} */
