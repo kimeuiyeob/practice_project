@@ -6,8 +6,11 @@ var loginButton = document.querySelector(".btn.btn-primary");
 var closeModalButtons = document.querySelectorAll(".close-modal");
 
 loginButton.addEventListener("click", function () {
-    loginModal.style.display = "block";
-    document.body.style.overflow = "hidden";
+    var isLoggedIn = $('#loginCheck').val() === 'true';
+    if (!isLoggedIn) {
+        loginModal.style.display = "block";
+        document.body.style.overflow = "hidden";
+    }
 });
 
 closeModalButtons.forEach(function (button) {
@@ -53,6 +56,7 @@ forgotPassLink.addEventListener("click", function (event) {
 });
 
 $(document).ready(function () {
+
     $('#loginForm').submit(function (event) {
         event.preventDefault();
         const email = $('#email').val();
@@ -69,12 +73,11 @@ $(document).ready(function () {
             success: function (data) {
                 if (data.success) {
                     window.location = "/daeduk";
-                } else {
-                    alert(data.message);
                 }
             },
-            error: function (request, status, error) {
-                alert("Error : " + request.responseText);
+            error: function (xhr, status, error) {
+                const response = JSON.parse(xhr.responseText);
+                alert(response.message);
             }
         });
     });
@@ -95,29 +98,24 @@ $(document).ready(function () {
                 email: findEmail
             }),
             success: function (data) {
-
                 $('#loadingIndicator').hide();
-
                 if (data.success) {
                     alert("이메일로 비밀번호를 보내드렸습니다.");
                     passwordFindModal.style.display = "none";
                     document.body.style.overflow = "auto";
                     $('.custom-button-field').show();
-                } else {
-                    alert(data.message);
-                    $('.custom-button-field').show();
                 }
             },
-            error: function (request, status, error) {
+            error: function (xhr, status, error) {
+                const response = JSON.parse(xhr.responseText);
                 $('#loadingIndicator').hide();
                 $('.custom-button-field').show();
-                alert("Error: " + request.responseText);
+                alert(response.message);
             }
         });
     });
 
     $('#signupForm').submit(function (event) {
-
         event.preventDefault();
 
         const email = $('#signupEmail').val().trim();
@@ -128,7 +126,6 @@ $(document).ready(function () {
             alert("모든 필드를 입력해주세요.");
             return;
         }
-
         if (password !== passwordConfirm) {
             alert("비밀번호가 일치하지 않습니다. 다시 확인해주세요.");
             return;
@@ -156,8 +153,9 @@ $(document).ready(function () {
                     alert(data.message);
                 }
             },
-            error: function (request, status, error) {
-                alert("Error: " + request.responseText);
+            error: function (xhr, status, error) {
+                const response = JSON.parse(xhr.responseText);
+                alert(response.message);
             }
         });
     });

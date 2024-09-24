@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,9 +31,9 @@ public class CheckController {
     private static final Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
 
     private final String SUCCESS = "로그인 성공";
-    private final String PASSWORD_FAIL = "패스워드 불일치";
-    private final String EMAIL_FAIL = "이메일 불일치";
-    private final String SERVER_ERROR = "서버 에러";
+    private final String PASSWORD_FAIL = "패스워드가 일치하지 않습니다.";
+    private final String EMAIL_FAIL = "이메일이 일치하지 않습니다.";
+    private final String SERVER_ERROR = "서버내부 문제가 생겼습니다.";
 
     /* 로그인 요청 */
     @PostMapping("/confirm")
@@ -50,7 +49,7 @@ public class CheckController {
             if (loginResult) {
                 response.put("message", SUCCESS);
                 response.put("success", "true");
-                /* 로그인 성공시 세션 저장 */
+
                 session.setAttribute("email", email);
                 return ResponseEntity.ok().body(response);
             } else {
@@ -61,6 +60,7 @@ public class CheckController {
             logger.info("NotFoundException: {}", EMAIL_FAIL);
             response.put("message", EMAIL_FAIL);
             return ResponseEntity.status(401).body(response);
+
         } catch (Exception e) {
             logger.info("Exception : {}", SERVER_ERROR);
             response.put("message", SERVER_ERROR);
@@ -112,6 +112,8 @@ public class CheckController {
         /* 비밀번호에 <> 있으면 &lt; &gt; 바꿔서 넣고 이메일로 비밀번호 알려줄때는 다시 원래대로 해서 보내주기 */
         String email = signupData.get("email");
         String password = signupData.get("password");
+
+        // 회원가입시 이메일 중복 확인후 회원가입 시키기 추가!!
         Boolean signupResult = userService.signup(email, password);
 
         Map<String, String> response = new HashMap<>();

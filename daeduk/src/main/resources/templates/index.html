@@ -29,11 +29,9 @@
     <!-- Jquery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- =================================================================================================== -->
-
 </head>
 
 <body>
-
     <!-- header.html -->
     <div id='header'></div>
     <!-- Sidebar -->
@@ -42,38 +40,6 @@
 
     <!-- ==========================================  검색창 ====================================================== -->
     <header class="masthead">
-        <!--  <div class="container position-relative">
-            <div class="row justify-content-center">
-                <div class="col-xl-6">
-                    <div class="text-center text-white">
-                        <h1 class="mb-5">대덕화학은 경험과 기술로 최고의 제품과 고객 만족을 추구합니다.</h1>
-
-                        <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
-                            <div class="row">
-                                <div class="col">
-                                    <input class="form-control form-control-lg" id="emailAddress" type="email"
-                                        data-sb-validations="required,email" />
-                                </div>
-                                <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton"
-                                        type="submit">검색</button></div>
-                            </div>
-
-                            <div class="d-none" id="submitSuccessMessage">
-                                <div class="text-center mb-3">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    <p>To activate this form, sign up at</p>
-                                    <a class="text-white"
-                                        href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                                </div>
-                            </div>
-                            <div class="d-none" id="submitErrorMessage">
-                                <div class="text-center text-danger mb-3">Error sending message!</div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div> -->
 
         <div class="contain">
             <div class="text-section text-white" style="position: relative !important">
@@ -94,7 +60,7 @@
     </header>
 
     <!-- ==========================================  인증서 ====================================================== -->
-    <div style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="display: flex; justify-content: center; align-items: center;">
         <div class="text-content">
             <p>CLEAN 사업장</p>
             <p>도져 용 이중 SEAL 특허</p>
@@ -132,48 +98,6 @@
         </section>
     </div>
 
-    <!-- ==========================================  사진 ====================================================== -->
-    <!-- <section class="showcase">
-        <div class="container-fluid p-0">
-            <div class="row g-0">
-                <div class="col-lg-6 order-lg-2 text-white showcase-img"><img src="image/poly.png" style="width:100%">
-                </div>
-                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <h2>Fully Responsive Design</h2>
-                    <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme
-                        will
-                        look great on any device, whether it's a phone, tablet, or desktop the page will behave
-                        responsively!</p>
-                </div>
-            </div>
-            <div class="row g-0">
-                <div class="col-lg-6 text-white showcase-img"><img src="image/poly2.png" style="width:100%"></div>
-                <div class="col-lg-6 my-auto showcase-text">
-                    <h2>Updated For Bootstrap 5</h2>
-                    <p class="lead mb-0">Newly improved, and full of great utility classes, Bootstrap 5 is leading
-                        the
-                        way in mobile responsive web development! All of the themes on Start Bootstrap are now using
-                        Bootstrap 5!</p>
-                </div>
-            </div>
-            <div class="row g-0">
-                <div class="col-lg-6 order-lg-2 text-white showcase-img"><img src="image/poly3.png" style="width:100%">
-                </div>
-                <div class="col-lg-6 order-lg-1 my-auto showcase-text">
-                    <h2>Fully Responsive Design</h2>
-                    <p class="lead mb-0">When you use a theme created by Start Bootstrap, you know that the theme
-                        will
-                        look great on any device, whether it's a phone, tablet, or desktop the page will behave
-                        responsively!</p>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-    <!--  <div style="padding-top:100px; padding-bottom: 100px; text-align: center;">
-        <img src=" image/picture1.png" style="width:90%">
-    </div> -->
-
     <!-- footer.html -->
     <div id='footer'></div>
 
@@ -193,8 +117,8 @@
     <script src="/js/slidebanner.js"></script>
 
     <!-- 세션값 담기 -->
-  <input type="hidden" id="loginCheck" th:value="${loginCheck}" />
-  <script src="/js/sessionCheck.js"></script>
+    <input type="hidden" id="loginCheck" th:value="${loginCheck}" />
+    <script src="/js/sessionCheck.js"></script>
 
 </body>
 
