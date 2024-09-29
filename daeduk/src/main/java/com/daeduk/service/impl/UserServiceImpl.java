@@ -43,6 +43,7 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
     /* 비밀번호 찾기 */
     @Override
     public UserDto findPassword(String email) {
@@ -76,6 +77,17 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             return false;
         }
+    }
 
+    /* 회원가입 이메일 중복 확인 */
+    public Boolean checkDuplEmail(String email) {
+
+        Optional<UserEntity> userValue = userRepository.findByEmail(email);
+
+        if (!userValue.isPresent()) {
+            return true; 
+        } else {
+            return false;
+        }
     }
 }

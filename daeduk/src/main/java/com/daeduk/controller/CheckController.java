@@ -35,6 +35,7 @@ public class CheckController {
     private final String EMAIL_FAIL = "이메일이 일치하지 않습니다.";
     private final String EMAIL_CHECK_FAIL = "해당 이메일로 가입된 이력이 없습니다.";
     private final String EMAIL_SEND_FAIL = "이메일 발송 실패했습니다.";
+    private final String EMAIL_DUPLE = "이미 가입된 이메일입니다.";
     private final String SERVER_ERROR = "서버내부 문제가 생겼습니다.";
 
     /* 로그인 요청 */
@@ -106,19 +107,24 @@ public class CheckController {
     @PostMapping("/signup")
     public ResponseEntity<Map<String, String>> signup(@RequestBody Map<String, String> signupData) {
 
-        /* 비밀번호에 <> 있으면 &lt; &gt; 바꿔서 넣고 이메일로 비밀번호 알려줄때는 다시 원래대로 해서 보내주기 */
         String email = signupData.get("email");
         String password = signupData.get("password");
 
-        // 회원가입시 이메일 중복 확인후 회원가입 시키기 추가 개발 필요!!
+        Map<String, String> response = new HashMap<>();
+
+        Boolean checkEmailResult = userService.checkDuplEmail(email);
+        if (!checkEmailResult) {
+            response.put("message", EMAIL_DUPLE);
+            return ResponseEntity.status(401).body(response);
+        }
+
         Boolean signupResult = userService.signup(email, password);
 
-        Map<String, String> response = new HashMap<>();
         if (signupResult) {
             response.put("success", "true");
             return ResponseEntity.ok().body(response);
         } else {
-            response.put("success", "false");
+            response.put("message", SERVER_ERROR);
             return ResponseEntity.status(401).body(response);
         }
     }
