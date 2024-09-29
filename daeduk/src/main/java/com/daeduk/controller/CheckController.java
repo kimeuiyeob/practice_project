@@ -33,6 +33,8 @@ public class CheckController {
     private final String SUCCESS = "로그인 성공";
     private final String PASSWORD_FAIL = "패스워드가 일치하지 않습니다.";
     private final String EMAIL_FAIL = "이메일이 일치하지 않습니다.";
+    private final String EMAIL_CHECK_FAIL = "해당 이메일로 가입된 이력이 없습니다.";
+    private final String EMAIL_SEND_FAIL = "이메일 발송 실패했습니다.";
     private final String SERVER_ERROR = "서버내부 문제가 생겼습니다.";
 
     /* 로그인 요청 */
@@ -73,15 +75,14 @@ public class CheckController {
     public ResponseEntity<Map<String, String>> findPassword(@RequestBody Map<String, String> email) {
 
         Map<String, String> response = new HashMap<>();
-
         String findEmail = email.get("email");
         UserDto user;
 
         try {
             user = userService.findPassword(findEmail);
         } catch (NotFoundException e) {
-            logger.info("NotFoundException: {}", "해당 이메일로 가입된 이력이 없습니다.");
-            response.put("message", "해당 이메일로 가입된 이력이 없습니다.");
+            logger.info("NotFoundException: {}", EMAIL_CHECK_FAIL);
+            response.put("message", EMAIL_CHECK_FAIL);
             return ResponseEntity.status(401).body(response);
         } catch (Exception e) {
             logger.info("Exception : {}", SERVER_ERROR);
@@ -92,12 +93,8 @@ public class CheckController {
         try {
             mailService.sendSimpleMessage(user);
         } catch (Exception e) {
-
-            System.out.println(e.getStackTrace());
-            System.out.println(e.getMessage());
-
-            logger.info("Exception: {}", "이메일 발송 실패했습니다.");
-            response.put("message", "이메일 발송 실패했습니다.");
+            logger.info("Exception: {}", EMAIL_SEND_FAIL);
+            response.put("message", EMAIL_SEND_FAIL);
             return ResponseEntity.status(500).body(response);
         }
 
@@ -113,7 +110,7 @@ public class CheckController {
         String email = signupData.get("email");
         String password = signupData.get("password");
 
-        // 회원가입시 이메일 중복 확인후 회원가입 시키기 추가!!
+        // 회원가입시 이메일 중복 확인후 회원가입 시키기 추가 개발 필요!!
         Boolean signupResult = userService.signup(email, password);
 
         Map<String, String> response = new HashMap<>();
