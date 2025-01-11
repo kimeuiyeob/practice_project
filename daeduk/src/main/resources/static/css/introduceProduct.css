@@ -66,4 +66,35 @@
     /* 동일한 높이 설정 */
     margin: 0 10px;
     /* 이미지 사이 여백 */
+    width: 35%;
+}
+
+.product-line2 {
+    height: 100%;
+    /* 동일한 높이 설정 */
+    margin: 0 10px;
+    /* 이미지 사이 여백 */
+    width: 50%;
+}
+
+table {
+    width: 75%;
+    margin: 50px auto;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+caption {
+    font-size: 1.5em;
+    margin-bottom: 20px;
 }

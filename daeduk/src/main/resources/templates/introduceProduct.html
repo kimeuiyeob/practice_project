@@ -46,28 +46,28 @@
     <h3 style="padding-bottom: 10px">제품 생산 과정</h3>
     <div class="process-flow">
       <div class="process-step">
-        <img src="image/thing1.png" alt="과정 1">
+        <img src="image/p1.png" alt="과정 1">
         <div class="label">원재료 입고</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing2.png" alt="과정 2">
+        <img src="image/p2.png" alt="과정 2">
         <div class="label">원재료 검사</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing3.png" alt="과정 3">
+        <img src="image/p3.png" alt="과정 3">
         <div class="label">원재료 투입</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing4.png" alt="과정 4">
+        <img src="image/p4.png" alt="과정 4">
         <div class="label">원재료 작색</div>
       </div>
     </div>
@@ -76,29 +76,29 @@
 
     <div class="process-flow">
       <div class="process-step">
-        <img src="image/thing1.png" alt="과정 1">
-        <div class="label">원재료 입고</div>
+        <img src="image/p5.png" alt="과정 1">
+        <div class="label">시험 사출</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing2.png" alt="과정 2">
-        <div class="label">원재료 검사</div>
+        <img src="image/p6.png" alt="과정 2">
+        <div class="label">양산</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing3.png" alt="과정 3">
-        <div class="label">원재료 투입</div>
+        <img src="image/p7.png" alt="과정 3">
+        <div class="label">사상 및 검사</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing4.png" alt="과정 4">
-        <div class="label">원재료 작색</div>
+        <img src="image/p8.png" alt="과정 4">
+        <div class="label">후 열처리</div>
       </div>
     </div>
 
@@ -106,38 +106,93 @@
 
     <div class="process-flow">
       <div class="process-step">
-        <img src="image/thing1.png" alt="과정 1">
-        <div class="label">원재료 입고</div>
+        <img src="image/p9.png" alt="과정 1">
+        <div class="label">면압 TEST</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing2.png" alt="과정 2">
-        <div class="label">원재료 검사</div>
+        <img src="image/p10.png" alt="과정 2">
+        <div class="label">검사 및 포장</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing3.png" alt="과정 3">
-        <div class="label">원재료 투입</div>
+        <img src="image/p11.png" alt="과정 3">
+        <div class="label">BOX 포장</div>
       </div>
       <div class="arrow">
         <img src="image/arrow.png" alt="화살표">
       </div>
       <div class="process-step">
-        <img src="image/thing4.png" alt="과정 4">
-        <div class="label">원재료 작색</div>
+        <img src="image/p12.png" alt="과정 4">
+        <div class="label">BOX 적치</div>
       </div>
     </div>
   </section>
   <!-- ================================================================================================================ -->
   <!-- 주요 품목 -->
+
+  <div class="content-padding-bottom"></div>
   <div style="display: flex; justify-content: center;">
-    <img class="product-line" src="image/table1.jpg" alt="제품1" />
-    <img class="product-line" src="image/table2.jpg" alt="제품2" />
-  </div>
+    <img class="product-line" src="image/bluering2.png" />
+    <img class="product-line" src="image/car1.png" />
+  </div> 
+  <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <img class="product-line" src="image/saltseal1.png" />
+    <img class="product-line" src="image/saltseal2.png" />
+    <img class="product-line" src="image/saltseal3.png" />
+  </div> 
+  <div style="display: flex; justify-content: center;">
+    <img class="product-line" src="image/saltseal4.png" />
+    <img class="product-line" src="image/saltseal5.png" />
+  </div> 
+
+  <!-- SALT SEAL -->
+  <h2 style="text-align: center; padding-top: 30px;">SALT SEAL</h2>
+  <table>
+      <thead>
+          <tr>
+              <th>품명</th>
+              <th>규격</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr th:each="product : ${saltSeal}">
+              <td th:text="${product.productName}"></td>
+              <td th:text="${product.productStandard}"></td>
+          </tr>
+      </tbody>
+  </table>
+
+  <div class="content-padding-bottom"></div>
+  <div style="display: flex; justify-content: center;">
+    <img class="product-line" src="image/bluering1.png" />
+    <img class="product-line" src="image/porkcar1.png" />
+  </div> 
+  <div style="display: flex; justify-content: center;">
+    <img class="product-line2" src="image/trackseal1.png" />
+  </div> 
+
+  <!-- TRACK SEAL -->
+  <h2 style="text-align: center; padding-top: 30px;">TRACK SEAL</h2>
+  <table>
+      <thead>
+          <tr>
+              <th>품명</th>
+              <th>규격</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr th:each="product : ${trackSeal}">
+              <td th:text="${product.productName}"></td>
+              <td th:text="${product.productStandard}"></td>
+          </tr>
+      </tbody>
+  </table>
+
 
   <div class="content-padding-bottom"></div>
   <!-- ================================================================================================================ -->

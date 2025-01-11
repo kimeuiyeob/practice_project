@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Daeduk chemical</title>
+
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- =================================================================================================== -->
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/logo.png" />
+    <!-- Custom CSS -->
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/login.css" rel="stylesheet" />
+    <link href="/css/sidebar.css" rel="stylesheet" />
+    <!-- css here -->
+    <link href="/css/introduce.css" rel="stylesheet" />
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- =================================================================================================== -->
+
+</head>
+
+<body>
+    <!-- header.html -->
+    <div id='header'></div>
+    <!-- Sidebar -->
+    <div id='side'></div>
+    <div class="content-padding-bottom"></div>
+    <div class="content-padding-bottom"></div>
+
+    <!-- ================================================================================================================ -->
+    <!-- 회사 사진 -->
+    <div class="gallery">
+        <div class="row">
+            <div class="photo">
+                <img src="image/lab1.png" alt="연구 전담부서 입구">
+                <h3>연구 전담부서 입구</h3>
+            </div>
+            <div class="photo">
+                <img src="image/lab2.png" alt="연구 검사실 전경">
+                <h3>연구 검사실 전경</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-padding-bottom"></div>
+
+    <div class="gallery">
+        <div class="row">
+            <div class="photo">
+                <img src="image/labp1.png" alt="노화 TEST기">
+                <h3>노화 TEST기</h3>
+            </div>
+            <div class="photo">
+                <img src="image/labp2.png" alt="내유 TEST기">
+                <h3>내유 TEST기</h3>
+            </div>
+            <div class="photo">
+                <img src="image/labp3.png" alt="투영기">
+                <h3>투영기</h3>
+            </div>
+        </div>
+    </div>
+    <div class="gallery">
+        <div class="row">
+            <div class="photo">
+                <img src="image/labp4.png" alt="디지털 경도기">
+                <h3>디지털 경도기</h3>
+            </div>
+            <div class="photo">
+                <img src="image/labp5.png" alt="만능 TEST기">
+                <h3>만능 TEST기</h3>
+            </div>
+            <div class="photo">
+                <img src="image/labp6.png" alt="면압 TEST기">
+                <h3>면압 TEST기</h3>
+            </div>
+        </div>
+    </div>
+    <div class="gallery">
+        <div class="row">
+            <div class="photo">
+                <img src="image/labt1.png" alt="신뢰성 TEST기">
+                <h3>신뢰성 TEST기</h3>
+            </div>
+            <div class="photo">
+                <img src="image/labt2.png" style="width: 92%;" alt="TEST 지그">
+                <h3>TEST 지그</h3>
+            </div>
+        </div>
+    </div>
+
+    <!-- ================================================================================================================ -->
+    <div class="content-padding-bottom"></div>
+
+    <!-- footer.html -->
+    <div id='footer'></div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SB Forms JS-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+    <!-- =================================================================================================== -->
+    <!-- Sidebar JS -->
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/sidebarScroll.js"></script>
+    <!-- Header JS -->
+    <script src="/js/headerFooter.js"></script>
+    <!-- =================================================================================================== -->
+    <script src="/js/introduce.js"></script>
+
+    <!-- 세션값 담기 -->
+    <input type="hidden" id="loginCheck" th:value="${loginCheck}" />
+    <script src="/js/sessionCheck.js"></script>
+
+</body>
+
+</html>
