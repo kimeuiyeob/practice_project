@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Daeduk chemical</title>
+
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet"
+        type="text/css" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet"
+        type="text/css" />
+    <!-- Boxicons CSS -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- =================================================================================================== -->
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/logo.png" />
+    <!-- Custom CSS -->
+    <link href="/css/styles.css" rel="stylesheet" />
+    <link href="/css/login.css" rel="stylesheet" />
+    <link href="/css/sidebar.css" rel="stylesheet" />
+    <!-- css here -->
+    <link href="/css/introduce.css" rel="stylesheet" />
+    <link href="/css/notice.css" rel="stylesheet" />
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- =================================================================================================== -->
+
+</head>
+
+<body>
+    <!-- header.html -->
+    <div id='header'></div>
+    <!-- Sidebar -->
+    <div id='side'></div>
+    <div class="content-padding-bottom"></div>
+
+    <!-- ================================================================================================================ -->
+    <!-- CEO 인사말 -->
+    <div class="ceo-message-section">
+        <h2 class="ceo-title">공지 사항</h2>
+        <button class="add-comment-btn" id="addCommentBtn" th:if="${loginCheck}">글 추가</button>
+        <br>
+        <div id="comment-list">
+        </div>
+    </div>
+
+    <!-- 팝업 창 (모달) -->
+    <div id="commentModal" class="modal">
+        <div class="modal-content">
+            <h3 style="margin-bottom: 0px;">글 작성</h3>
+            <textarea id="commentInput" rows="4" placeholder="공지사항을 작성해주세요..."></textarea>
+            <div class="modal-buttons">
+                <button id="cancelBtn" class="btn-cancel">취소</button>
+                <button id="submitBtn" class="btn-submit">확인</button>
+            </div>
+        </div>
+    </div>
+    <!-- ================================================================================================================ -->
+    <div class="content-padding-bottom"></div>
+
+    <!-- footer.html -->
+    <div id='footer'></div>
+
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SB Forms JS-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+    <!-- =================================================================================================== -->
+    <!-- Sidebar JS -->
+    <script src="/js/sidebar.js"></script>
+    <script src="/js/sidebarScroll.js"></script>
+    <!-- Header JS -->
+    <script src="/js/headerFooter.js"></script>
+    <!-- =================================================================================================== -->
+    <script src="/js/introduce.js"></script>
+
+    <!-- 세션값 담기 -->
+    <input type="hidden" id="loginCheck" th:value="${loginCheck}" />
+    <script src="/js/sessionCheck.js"></script>
+
+    <!-- Jquery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        /* 로그인 상태를 JavaScript 변수로 전달 */
+        var isLoggedIn = [[${loginCheck}]];
+
+        // 공지사항 조회 함수 정의
+        function loadComments() {
+            $.ajax({
+                url: '/notice/getComment',
+                type: 'GET',
+                success: function (data) {
+                    const commentList = $('#comment-list');
+                    commentList.empty(); 
+                    data.forEach(comment => {
+                        const commentHtml = `
+                            <div>
+                                <span>● ${comment.comment}</span> &nbsp;&nbsp;&nbsp;
+                                ${isLoggedIn ? `<button type="button" class="delete-btn btn-cancel" style="width: 50px; border-radius: 7px;" data-id="${comment.id}">삭제</button>` : ''}
+                            </div>
+                            <br>
+                        `;
+                        commentList.append(commentHtml);
+                    });
+                    bindDeleteEvent();  
+                },
+                error: function () {
+                    alert('댓글 목록을 불러오는데 실패했습니다.');
+                }
+            });
+        }
+    
+        // 댓글 삭제 이벤트 바인딩
+        function bindDeleteEvent() {
+            $('.delete-btn').off('click').on('click', function () {
+                const button = $(this);
+                const noticeId = button.data('id');
+        
+                $.ajax({
+                    url: '/notice/deleteComment',
+                    type: 'POST',
+                    data: JSON.stringify({ id: noticeId }),
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (response) {
+                        if (response === "삭제 완료") {
+                            alert('삭제 완료되었습니다.');
+                            loadComments();  // 댓글 목록 다시 불러오기
+                        } else {
+                            alert('삭제에 실패했습니다.');
+                        }
+                    },
+                    error: function () {
+                        alert('댓글 삭제 중 문제가 발생했습니다.');
+                    }
+                });
+            });
+        }
+    
+        // 문서 준비 완료 후 실행되는 함수
+        $(document).ready(function () {
+            loadComments();  // 페이지 로드 시 댓글 목록 불러오기
+        
+            // 댓글 추가 버튼 클릭 시 팝업 열기
+            document.getElementById('addCommentBtn').addEventListener('click', function() {
+                document.getElementById('commentModal').style.display = 'flex';
+            });
+        
+            // 팝업 닫기 (취소 버튼 클릭 시)
+            document.getElementById('cancelBtn').addEventListener('click', function() {
+                document.getElementById('commentModal').style.display = 'none';
+            });
+        
+            // 확인 버튼 클릭 시 서버에 댓글 전송
+            document.getElementById('submitBtn').addEventListener('click', function() {
+                var commentText = document.getElementById('commentInput').value;
+                if (commentText.trim() !== '') {
+                    $.ajax({
+                        url: '/notice/addComment', 
+                        type: 'POST',
+                        data: JSON.stringify({ comment: commentText }),
+                        contentType: 'application/json; charset=utf-8',
+                        success: function(response) {
+                            if (response === 'true') {
+                                alert('글이 추가되었습니다.');
+                                document.getElementById('commentModal').style.display = 'none';  
+                                loadComments();  // 댓글 목록 다시 불러오기
+                            } else {
+                                alert('글 추가에 실패했습니다.');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('에러 발생:', error);
+                            alert('글 추가 중 문제가 발생했습니다.');
+                        }
+                    });
+                } else {
+                    alert('글을 작성해주세요.');
+                }
+            });
+        });
+    </script>
+    
+    
+    
+
+</body>
+
+</html>
